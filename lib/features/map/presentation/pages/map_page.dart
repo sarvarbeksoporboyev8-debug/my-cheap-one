@@ -78,6 +78,17 @@ class _MapPageState extends rp.ConsumerState<MapPage> {
         debugPrint('Secure storage read failed: $e');
       }
     }
+    
+    // Set the token BEFORE creating the map widget
+    if (token != null && token.isNotEmpty) {
+      try {
+        MapboxOptions.setAccessToken(token);
+        debugPrint('Mapbox token set successfully');
+      } catch (e) {
+        debugPrint('Failed to set Mapbox token: $e');
+      }
+    }
+    
     if (!mounted) return;
     setState(() { _token = token; _loadingToken = false; });
   }

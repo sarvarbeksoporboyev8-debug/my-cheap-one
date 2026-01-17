@@ -2,15 +2,99 @@
   "shops": [
     {
       "id": "1",
-      "name": "Green Valley Hub",
+      "name": "CheapPharmacy Downtown",
       "logo_url": null,
-      "short_description": "Seasonal veggies and fruits",
-      "long_description": "We bring fresh produce from local farms.",
+      "short_description": "Affordable prescriptions & health essentials",
+      "long_description": "Your neighborhood pharmacy with the lowest prices on prescriptions, vitamins, and health products.",
+      "pickup": true,
+      "delivery": true,
+      "orders_close_at": "2026-12-31T23:59:00Z",
+      "lat": 37.7749,
+      "lng": -122.4194
+    },
+    {
+      "id": "2",
+      "name": "HealthMart Express",
+      "logo_url": null,
+      "short_description": "Quick prescriptions & wellness products",
+      "long_description": "Fast service pharmacy with drive-through pickup available.",
       "pickup": true,
       "delivery": false,
       "orders_close_at": "2026-12-31T23:59:00Z",
-      "lat": 37.776,
-      "lng": -122.418
+      "lat": 37.7851,
+      "lng": -122.4089
+    },
+    {
+      "id": "3",
+      "name": "Wellness Plus Pharmacy",
+      "logo_url": null,
+      "short_description": "Holistic health & natural remedies",
+      "long_description": "Combining traditional pharmacy with natural health solutions.",
+      "pickup": true,
+      "delivery": true,
+      "orders_close_at": "2026-12-31T23:59:00Z",
+      "lat": 37.7694,
+      "lng": -122.4262
+    },
+    {
+      "id": "4",
+      "name": "MediSave Drugs",
+      "logo_url": null,
+      "short_description": "Generic medications at discount prices",
+      "long_description": "Specializing in affordable generic alternatives to brand-name drugs.",
+      "pickup": true,
+      "delivery": false,
+      "orders_close_at": "2026-12-31T23:59:00Z",
+      "lat": 37.7879,
+      "lng": -122.4074
+    },
+    {
+      "id": "5",
+      "name": "Family Care Pharmacy",
+      "logo_url": null,
+      "short_description": "Trusted family pharmacy since 1985",
+      "long_description": "Personalized service for all your family's health needs.",
+      "pickup": true,
+      "delivery": true,
+      "orders_close_at": "2026-12-31T23:59:00Z",
+      "lat": 37.7619,
+      "lng": -122.4348
+    },
+    {
+      "id": "6",
+      "name": "QuickRx Pharmacy",
+      "logo_url": null,
+      "short_description": "Same-day prescription delivery",
+      "long_description": "Get your medications delivered within hours.",
+      "pickup": true,
+      "delivery": true,
+      "orders_close_at": "2026-12-31T23:59:00Z",
+      "lat": 37.7829,
+      "lng": -122.4324
+    },
+    {
+      "id": "7",
+      "name": "Sunset Health Pharmacy",
+      "logo_url": null,
+      "short_description": "Serving the Sunset district",
+      "long_description": "Community pharmacy with multilingual staff.",
+      "pickup": true,
+      "delivery": false,
+      "orders_close_at": "2026-12-31T23:59:00Z",
+      "lat": 37.7599,
+      "lng": -122.4783
+    },
+    {
+      "id": "8",
+      "name": "Mission Discount Pharmacy",
+      "logo_url": null,
+      "short_description": "Best prices in the Mission",
+      "long_description": "Affordable healthcare products for the community.",
+      "pickup": true,
+      "delivery": true,
+      "orders_close_at": "2026-12-31T23:59:00Z",
+      "lat": 37.7599,
+      "lng": -122.4148
     }
   ]
 }

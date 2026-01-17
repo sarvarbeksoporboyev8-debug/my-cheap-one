@@ -1,13 +1,64 @@
 {
   "producers": [
     {
-      "id": "p",
-      "name": "Old Mill Farm",
-      "short_description": "Organic dairy",
+      "id": "p1",
+      "name": "BioHealth Labs",
+      "short_description": "Organic supplements manufacturer",
+      "long_description": "Premium organic vitamins and supplements made in California.",
       "pickup": false,
       "delivery": true,
-      "lat": 37.772,
-      "lng": -122.423
+      "lat": 37.7721,
+      "lng": -122.4311
+    },
+    {
+      "id": "p2",
+      "name": "NatureCure Remedies",
+      "short_description": "Herbal medicine producer",
+      "long_description": "Traditional herbal remedies using sustainably sourced ingredients.",
+      "pickup": true,
+      "delivery": true,
+      "lat": 37.7801,
+      "lng": -122.4152
+    },
+    {
+      "id": "p3",
+      "name": "PureVita Supplements",
+      "short_description": "Vitamin & mineral supplements",
+      "long_description": "High-quality vitamins at wholesale prices.",
+      "pickup": false,
+      "delivery": true,
+      "lat": 37.7655,
+      "lng": -122.4421
+    },
+    {
+      "id": "p4",
+      "name": "MedEquip Direct",
+      "short_description": "Medical equipment supplier",
+      "long_description": "Home medical equipment and mobility aids.",
+      "pickup": true,
+      "delivery": true,
+      "lat": 37.7912,
+      "lng": -122.4001
+    },
+    {
+      "id": "p5",
+      "name": "Wellness Essentials Co",
+      "short_description": "Health & wellness products",
+      "long_description": "Essential oils, aromatherapy, and wellness accessories.",
+      "pickup": true,
+      "delivery": false,
+      "lat": 37.7558,
+      "lng": -122.4185
+    },
+    {
+      "id": "p6",
+      "name": "GeneriMed Wholesale",
+      "short_description": "Generic drug distributor",
+      "long_description": "Bulk generic medications for pharmacies.",
+      "pickup": true,
+      "delivery": true,
+      "lat": 37.7789,
+      "lng": -122.3958
     }
   ]
 }
