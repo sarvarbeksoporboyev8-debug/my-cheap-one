@@ -31,27 +31,6 @@ class _MapPageState extends rp.ConsumerState<MapPage> {
   PointAnnotationManager? _pointManager;
   Uint8List? _markerBytes;
   Uint8List? _markerSelectedBytes;
-<<<<<<< HEAD
-=======
-  final Map<String, Enterprise> _annotationIndex = {};
-  bool _pointClickListenerAttached = false;
-  OnPointAnnotationClickListener? _markerTapListener;
-
-  void _onMarkerTap(PointAnnotation annotation) {
-    try {
-      final key = annotation.id; // nullable in some SDK versions
-      if (key == null) return;
-      final e = _annotationIndex[key];
-      if (e != null) {
-        ref.read(mapControllerProvider.notifier).setSelected(e);
-        unawaited(_centerOnEnterprise(e));
-        _showEnterpriseSheet(e);
-      }
-    } catch (e) {
-      debugPrint('Marker tap handler failed: $e');
-    }
-  }
->>>>>>> fd01fa2 (Sync local my-dreamflow to repo)
 
   @override
   void initState() {
@@ -165,15 +144,7 @@ class _MapPageState extends rp.ConsumerState<MapPage> {
   Future<void> _setInitialCameraIfNeeded() async {
     if (_mapboxMap == null) return;
     try {
-<<<<<<< HEAD
       await _mapboxMap!.setCamera(CameraOptions(center: Point(coordinates: Position(_defaultCenter.lng, _defaultCenter.lat)), zoom: _defaultZoom, pitch: 0, bearing: 0));
-=======
-      final is3D = ref.read(mapControllerProvider).is3D;
-      final zoom = is3D ? 16.0 : _defaultZoom;
-      final pitch = is3D ? 60.0 : 0.0;
-      final bearing = is3D ? 20.0 : 0.0;
-      await _mapboxMap!.setCamera(CameraOptions(center: Point(coordinates: Position(_defaultCenter.lng, _defaultCenter.lat)), zoom: zoom, pitch: pitch, bearing: bearing));
->>>>>>> fd01fa2 (Sync local my-dreamflow to repo)
     } catch (e) {
       debugPrint('Failed to set initial camera: $e');
     }
@@ -196,20 +167,6 @@ class _MapPageState extends rp.ConsumerState<MapPage> {
     final items = ref.read(mapControllerProvider).visibleItems;
     try {
       _pointManager ??= await _mapboxMap!.annotations.createPointAnnotationManager();
-<<<<<<< HEAD
-=======
-      // Attach click listener once per manager
-      if (!_pointClickListenerAttached && _pointManager != null) {
-        try {
-          _markerTapListener ??= _InlinePointAnnotationClickListener(_onMarkerTap);
-          _pointManager!.addOnPointAnnotationClickListener(_markerTapListener!);
-          _pointClickListenerAttached = true;
-        } catch (e) {
-          debugPrint('Failed to attach marker tap listener: $e');
-        }
-      }
-
->>>>>>> fd01fa2 (Sync local my-dreamflow to repo)
       await _pointManager!.deleteAll();
       await _ensureMarkerImages(context);
       final selected = ref.read(mapControllerProvider).selected;
@@ -226,21 +183,7 @@ class _MapPageState extends rp.ConsumerState<MapPage> {
           textSize: 10,
         ));
       }
-<<<<<<< HEAD
       await _pointManager!.createMulti(opts);
-=======
-      // Create annotations and build index for reverse lookup on tap
-      final anns = await _pointManager!.createMulti(opts);
-      _annotationIndex.clear();
-      for (var i = 0; i < anns.length && i < items.length; i++) {
-        final ann = anns[i];
-        if (ann == null) continue;
-        final key = ann.id;
-        if (key != null) {
-          _annotationIndex[key] = items[i];
-        }
-      }
->>>>>>> fd01fa2 (Sync local my-dreamflow to repo)
     } catch (e) {
       debugPrint('Failed to sync annotations: $e');
     }
@@ -295,35 +238,11 @@ class _MapPageState extends rp.ConsumerState<MapPage> {
           }
         } catch (e) { debugPrint('zoom out fail: $e'); }
       }, onToggle3D: () async {
-<<<<<<< HEAD
         ref.read(mapControllerProvider.notifier).toggle3D();
         final sel = ref.read(mapControllerProvider).selected;
         if (sel != null) {
           await _centerOnEnterprise(sel);
         } else {
-=======
-        // Toggle state first
-        ref.read(mapControllerProvider.notifier).toggle3D();
-        final is3D = ref.read(mapControllerProvider).is3D;
-        try {
-          // If something is selected, prefer centering on it with appropriate camera
-          final sel = ref.read(mapControllerProvider).selected;
-          if (sel != null) {
-            await _centerOnEnterprise(sel);
-            return;
-          }
-          // Otherwise, adjust current camera in place: raise zoom for 3D and tilt
-          final cam = await _mapboxMap?.getCameraState();
-          final currentZoom = cam?.zoom ?? _defaultZoom;
-          final targetZoom = is3D ? (currentZoom < 16.0 ? 16.0 : currentZoom) : currentZoom; // 3D buildings visible >= 15
-          await _mapboxMap?.easeTo(
-            CameraOptions(zoom: targetZoom, pitch: is3D ? 60.0 : 0.0, bearing: is3D ? 20.0 : 0.0),
-            MapAnimationOptions(duration: 300),
-          );
-        } catch (e) {
-          debugPrint('toggle 3D fail: $e');
-          // Fallback: set to default camera respecting 3D
->>>>>>> fd01fa2 (Sync local my-dreamflow to repo)
           await _setInitialCameraIfNeeded();
         }
       })),
@@ -387,16 +306,6 @@ class _MapPageState extends rp.ConsumerState<MapPage> {
   }
 }
 
-<<<<<<< HEAD
-=======
-class _InlinePointAnnotationClickListener extends OnPointAnnotationClickListener {
-  final void Function(PointAnnotation) onTap;
-  _InlinePointAnnotationClickListener(this.onTap);
-  @override
-  void onPointAnnotationClick(PointAnnotation annotation) => onTap(annotation);
-}
-
->>>>>>> fd01fa2 (Sync local my-dreamflow to repo)
 class _TopOverlay extends rp.ConsumerWidget {
   final TextEditingController searchController;
   final SellerMode mode;

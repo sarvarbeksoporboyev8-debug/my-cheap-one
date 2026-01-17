@@ -6,7 +6,6 @@ import 'package:sellingapp/features/products/presentation/pages/product_detail_p
 import 'package:sellingapp/features/cart/presentation/pages/cart_page.dart';
 import 'package:sellingapp/features/checkout/presentation/pages/checkout_flow_page.dart';
 import 'package:sellingapp/features/checkout/presentation/pages/order_confirmation_page.dart';
-<<<<<<< HEAD
 import 'package:sellingapp/features/account/presentation/pages/admin_settings_page.dart';
 import 'package:sellingapp/features/account/presentation/pages/account_page.dart';
 import 'package:sellingapp/features/discover/presentation/pages/producer_detail_page.dart';
@@ -16,28 +15,6 @@ import 'package:sellingapp/features/account/presentation/pages/profile_page.dart
 import 'package:sellingapp/features/account/presentation/pages/settings_page.dart';
 import 'package:sellingapp/nav_shell.dart';
 import 'package:sellingapp/features/map/presentation/pages/map_page.dart';
-=======
-import 'package:sellingapp/features/account/presentation/pages/admin_mode_page.dart';
-import 'package:sellingapp/features/account/presentation/pages/account_page.dart';
-import 'package:sellingapp/features/discover/presentation/pages/producer_detail_page.dart';
-import 'package:sellingapp/features/account/presentation/pages/favorites_page.dart';
-import 'package:sellingapp/features/account/presentation/pages/orders_or_reservations_page.dart';
-import 'package:sellingapp/features/account/presentation/pages/profile_page.dart';
-import 'package:sellingapp/features/account/presentation/pages/settings_page.dart';
-import 'package:sellingapp/features/account/presentation/pages/my_listings_page.dart';
-import 'package:sellingapp/features/account/presentation/pages/offers_page.dart';
-import 'package:sellingapp/features/account/presentation/pages/location_settings_page.dart';
-import 'package:sellingapp/features/account/presentation/pages/notification_settings_page.dart';
-import 'package:sellingapp/features/account/presentation/pages/appearance_page.dart';
-import 'package:sellingapp/features/account/presentation/pages/support_page.dart';
-import 'package:sellingapp/features/account/presentation/pages/about_page.dart';
-import 'package:sellingapp/features/account/presentation/pages/login_page.dart';
-import 'package:sellingapp/nav_shell.dart';
-import 'package:sellingapp/features/map/presentation/pages/map_page.dart';
-import 'package:sellingapp/screens/home/home_screen_v2.dart';
-import 'package:sellingapp/screens/category/category_browse_screen.dart';
-import 'package:sellingapp/screens/category/urgency_browse_screen.dart';
->>>>>>> fd01fa2 (Sync local my-dreamflow to repo)
 
 /// GoRouter configuration for app navigation
 ///
@@ -53,13 +30,7 @@ import 'package:sellingapp/screens/category/urgency_browse_screen.dart';
 /// 3. Navigate using context.go() or context.push()
 /// 4. Use context.pop() to go back.
 class AppRouter {
-<<<<<<< HEAD
   static final GoRouter router = GoRouter(
-=======
-  static final _rootNavigatorKey = GlobalKey<NavigatorState>();
-  static final GoRouter router = GoRouter(
-    navigatorKey: _rootNavigatorKey,
->>>>>>> fd01fa2 (Sync local my-dreamflow to repo)
     initialLocation: AppRoutes.discover,
     routes: [
       StatefulShellRoute.indexedStack(
@@ -68,11 +39,7 @@ class AppRouter {
           StatefulShellBranch(routes: [
             GoRoute(
               path: AppRoutes.discover,
-<<<<<<< HEAD
               pageBuilder: (context, state) => const NoTransitionPage(child: DiscoverPage()),
-=======
-              pageBuilder: (context, state) => const NoTransitionPage(child: HomeScreenV2()),
->>>>>>> fd01fa2 (Sync local my-dreamflow to repo)
             ),
           ]),
           StatefulShellBranch(routes: [
@@ -94,11 +61,7 @@ class AppRouter {
               routes: [
                 GoRoute(
                   path: 'admin',
-<<<<<<< HEAD
                   pageBuilder: (context, state) => const NoTransitionPage(child: AdminSettingsPage()),
-=======
-                  pageBuilder: (context, state) => const NoTransitionPage(child: AdminModePage()),
->>>>>>> fd01fa2 (Sync local my-dreamflow to repo)
                 ),
                 GoRoute(
                   path: 'favorites',
@@ -106,11 +69,7 @@ class AppRouter {
                 ),
                 GoRoute(
                   path: 'orders',
-<<<<<<< HEAD
                   pageBuilder: (context, state) => const NoTransitionPage(child: OrdersPage()),
-=======
-                  pageBuilder: (context, state) => const NoTransitionPage(child: OrdersOrReservationsPage()),
->>>>>>> fd01fa2 (Sync local my-dreamflow to repo)
                 ),
                 GoRoute(
                   path: 'profile',
@@ -120,67 +79,11 @@ class AppRouter {
                   path: 'settings',
                   pageBuilder: (context, state) => const NoTransitionPage(child: SettingsPage()),
                 ),
-<<<<<<< HEAD
-=======
-                GoRoute(
-                  path: 'my-listings',
-                  pageBuilder: (context, state) => const NoTransitionPage(child: MyListingsPage()),
-                ),
-                GoRoute(
-                  path: 'offers',
-                  pageBuilder: (context, state) => const NoTransitionPage(child: OffersPage()),
-                ),
-                GoRoute(
-                  path: 'location',
-                  pageBuilder: (context, state) => const NoTransitionPage(child: LocationSettingsPage()),
-                ),
-                GoRoute(
-                  path: 'notifications',
-                  pageBuilder: (context, state) => const NoTransitionPage(child: NotificationSettingsPage()),
-                ),
-                GoRoute(
-                  path: 'appearance',
-                  pageBuilder: (context, state) => const NoTransitionPage(child: AppearancePage()),
-                ),
-                GoRoute(
-                  path: 'support',
-                  pageBuilder: (context, state) => const NoTransitionPage(child: SupportPage()),
-                ),
-                GoRoute(
-                  path: 'about',
-                  pageBuilder: (context, state) => const NoTransitionPage(child: AboutPage()),
-                ),
->>>>>>> fd01fa2 (Sync local my-dreamflow to repo)
               ],
             ),
           ]),
         ],
       ),
-<<<<<<< HEAD
-=======
-      // Category browse screen – outside the shell so it appears full-screen.
-      GoRoute(
-        parentNavigatorKey: _rootNavigatorKey,
-        path: AppRoutes.category,
-        pageBuilder: (context, state) {
-          final slug = state.pathParameters['slug']!;
-          final title = (state.extra is Map && (state.extra as Map).containsKey('title')) ? (state.extra as Map)['title'] as String? : null;
-          return NoTransitionPage(child: CategoryBrowseScreen(slug: slug, title: title));
-        },
-      ),
-      // Urgency browse screen – outside the shell, full-screen without bottom nav
-      GoRoute(
-        parentNavigatorKey: _rootNavigatorKey,
-        path: AppRoutes.urgency,
-        pageBuilder: (context, state) {
-          final window = state.pathParameters['window']!; // e.g., 2h, 8h
-          final title = (state.extra is Map && (state.extra as Map).containsKey('title')) ? (state.extra as Map)['title'] as String? : null;
-          return NoTransitionPage(
-            child: UrgencyBrowseScreen(window: window, title: title),
-          );
-        },
-      ),
->>>>>>> fd01fa2 (Sync local my-dreamflow to repo)
       GoRoute(
         path: AppRoutes.shopfront,
         name: 'shopfront',
@@ -215,15 +118,6 @@ class AppRouter {
         name: 'confirmation',
         pageBuilder: (context, state) => const NoTransitionPage(child: OrderConfirmationPage()),
       ),
-<<<<<<< HEAD
-=======
-      // Login outside the shell
-      GoRoute(
-        parentNavigatorKey: _rootNavigatorKey,
-        path: AppRoutes.login,
-        pageBuilder: (context, state) => const NoTransitionPage(child: LoginPage()),
-      ),
->>>>>>> fd01fa2 (Sync local my-dreamflow to repo)
     ],
   );
 }
@@ -233,11 +127,6 @@ class AppRouter {
 class AppRoutes {
   static const String discover = '/';
   static const String map = '/map';
-<<<<<<< HEAD
-=======
-  static const String category = '/category/:slug';
-  static const String urgency = '/urgency/:window';
->>>>>>> fd01fa2 (Sync local my-dreamflow to repo)
   static const String shopfront = '/shops/:id';
   static const String producer = '/producers/:id';
   static const String product = '/products/:id';
@@ -245,11 +134,4 @@ class AppRoutes {
   static const String account = '/account';
   static const String checkout = '/checkout';
   static const String confirmation = '/confirmation';
-<<<<<<< HEAD
-=======
-  static const String login = '/login';
-
-  static String categoryBrowsePath(String slug) => '/category/$slug';
-  static String urgencyBrowsePath(String window) => '/urgency/$window';
->>>>>>> fd01fa2 (Sync local my-dreamflow to repo)
 }
