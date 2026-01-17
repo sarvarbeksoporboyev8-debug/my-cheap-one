@@ -1,0 +1,16 @@
+{
+  "shops": [
+    {
+      "id": "1",
+      "name": "Green Valley Hub",
+      "logo_url": null,
+      "short_description": "Seasonal veggies and fruits",
+      "long_description": "We bring fresh produce from local farms.",
+      "pickup": true,
+      "delivery": false,
+      "orders_close_at": "2026-12-31T23:59:00Z",
+      "lat": 37.776,
+      "lng": -122.418
+    }
+  ]
+}

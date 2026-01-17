@@ -1,0 +1,18 @@
+{
+  "products": [
+    {
+      "id": "p1",
+      "name": "Carrots",
+      "supplier_name": "Old Mill Farm",
+      "description": "Crunchy and sweet.",
+      "images": [],
+      "min_price": 2.5,
+      "variants": [
+        {"id": "v1", "display_name": "500g bag", "unit_to_display": "500g", "price_with_fees": 2.5, "stock_on_hand": 10},
+        {"id": "v2", "display_name": "1kg bag", "unit_to_display": "1kg", "price_with_fees": 4.5, "stock_on_hand": 5}
+      ],
+      "taxon_ids": ["t1"],
+      "property_ids": ["pr1"]
+    }
+  ]
+}

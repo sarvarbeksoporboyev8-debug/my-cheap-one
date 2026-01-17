@@ -1,0 +1,6 @@
+{
+  "taxons": [
+    {"id": "t1", "name": "Vegetables"},
+    {"id": "t2", "name": "Fruits"}
+  ]
+}

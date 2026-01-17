@@ -1,0 +1,13 @@
+{
+  "producers": [
+    {
+      "id": "p",
+      "name": "Old Mill Farm",
+      "short_description": "Organic dairy",
+      "pickup": false,
+      "delivery": true,
+      "lat": 37.772,
+      "lng": -122.423
+    }
+  ]
+}
