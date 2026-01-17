@@ -196,7 +196,7 @@ class _DeliveryTrackingPageState extends ConsumerState<DeliveryTrackingPage>
               points: [pickupLatLng, dropoffLatLng],
               color: scheme.primary.withOpacity(0.6),
               strokeWidth: 4,
-              isDotted: true,
+              pattern: const StrokePattern.dotted(),
             ),
           ],
         ),
