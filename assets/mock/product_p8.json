@@ -1,0 +1,19 @@
+{
+  "product": {
+    "id": "p8",
+    "name": "Raw Honey",
+    "supplier_name": "Urban Harvest Co-op",
+    "description": "Pure, unfiltered raw honey from local beekeepers. Rich in antioxidants and natural enzymes. Perfect for tea, toast, or cooking.",
+    "images": [
+      "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=400&h=400&fit=crop"
+    ],
+    "min_price": 8.00,
+    "variants": [
+      {"id": "v15", "display_name": "Small jar", "unit_to_display": "250g", "price_with_fees": 8.00, "stock_on_hand": 25},
+      {"id": "v16", "display_name": "Large jar", "unit_to_display": "500g", "price_with_fees": 14.00, "stock_on_hand": 15}
+    ],
+    "taxon_ids": ["t5"],
+    "property_ids": ["pr5"]
+  }
+}

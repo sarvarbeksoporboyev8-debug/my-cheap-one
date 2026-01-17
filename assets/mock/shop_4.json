@@ -1,0 +1,19 @@
+{
+  "shop": {
+    "id": "4",
+    "name": "Sunrise Bakery",
+    "description": "Artisan bakery crafting fresh bread, pastries, and cakes daily. Using traditional recipes and the finest ingredients.",
+    "logo_url": "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=200&h=200&fit=crop",
+    "cover_url": "https://images.unsplash.com/photo-1517433670267-08bbd4be890f?w=800&h=400&fit=crop",
+    "address": "321 Baker Street",
+    "city": "New York",
+    "phone": "+1 555-0104",
+    "rating": 4.9,
+    "review_count": 892,
+    "delivery_fee": 1.99,
+    "delivery_time": "15-25 min",
+    "categories": ["Bakery", "Pastries", "Bread"],
+    "is_open": true,
+    "opening_hours": "6:00 AM - 7:00 PM"
+  }
+}

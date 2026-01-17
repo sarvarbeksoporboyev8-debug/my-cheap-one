@@ -1,0 +1,19 @@
+{
+  "product": {
+    "id": "p4",
+    "name": "Fresh Spinach",
+    "supplier_name": "Urban Harvest Co-op",
+    "description": "Tender baby spinach leaves, triple-washed and ready to eat. Rich in iron and vitamins. Great for salads, smoothies, or cooking.",
+    "images": [
+      "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1574316071802-0d684efa7bf5?w=400&h=400&fit=crop"
+    ],
+    "min_price": 3.50,
+    "variants": [
+      {"id": "v7", "display_name": "200g bag", "unit_to_display": "200g", "price_with_fees": 3.50, "stock_on_hand": 50},
+      {"id": "v8", "display_name": "500g bag", "unit_to_display": "500g", "price_with_fees": 7.00, "stock_on_hand": 30}
+    ],
+    "taxon_ids": ["t1"],
+    "property_ids": ["pr1"]
+  }
+}

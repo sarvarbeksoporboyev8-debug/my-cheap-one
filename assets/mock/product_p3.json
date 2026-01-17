@@ -1,0 +1,19 @@
+{
+  "product": {
+    "id": "p3",
+    "name": "Red Apples",
+    "supplier_name": "Heritage Orchard",
+    "description": "Crisp and sweet red apples from our century-old orchard. Hand-picked at peak ripeness. Perfect for snacking or baking.",
+    "images": [
+      "https://images.unsplash.com/photo-1560806887-1e4cd0b6cbd6?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?w=400&h=400&fit=crop"
+    ],
+    "min_price": 4.00,
+    "variants": [
+      {"id": "v5", "display_name": "6 pack", "unit_to_display": "6 apples", "price_with_fees": 4.00, "stock_on_hand": 40},
+      {"id": "v6", "display_name": "12 pack", "unit_to_display": "12 apples", "price_with_fees": 7.50, "stock_on_hand": 25}
+    ],
+    "taxon_ids": ["t2"],
+    "property_ids": ["pr2"]
+  }
+}

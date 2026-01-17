@@ -1,0 +1,19 @@
+{
+  "product": {
+    "id": "p6",
+    "name": "Sourdough Bread",
+    "supplier_name": "Sunrise Bakery",
+    "description": "Artisan sourdough bread made with our 50-year-old starter. Crusty exterior, soft tangy interior. Baked fresh every morning.",
+    "images": [
+      "https://images.unsplash.com/photo-1509440159596-0249088772ff?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1585478259715-876acc5be8eb?w=400&h=400&fit=crop"
+    ],
+    "min_price": 6.00,
+    "variants": [
+      {"id": "v11", "display_name": "Regular loaf", "unit_to_display": "500g", "price_with_fees": 6.00, "stock_on_hand": 20},
+      {"id": "v12", "display_name": "Large loaf", "unit_to_display": "800g", "price_with_fees": 9.00, "stock_on_hand": 15}
+    ],
+    "taxon_ids": ["t3"],
+    "property_ids": ["pr3"]
+  }
+}

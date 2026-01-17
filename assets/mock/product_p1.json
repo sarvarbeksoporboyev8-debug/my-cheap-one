@@ -1,14 +1,17 @@
 {
   "product": {
     "id": "p1",
-    "name": "Carrots",
-    "supplier_name": "Old Mill Farm",
-    "description": "Crunchy and sweet.",
-    "images": [],
-    "min_price": 2.5,
+    "name": "Organic Carrots",
+    "supplier_name": "FreshBite Market",
+    "description": "Fresh organic carrots, locally grown. Perfect for salads, juicing, or cooking. Harvested daily for maximum freshness.",
+    "images": [
+      "https://images.unsplash.com/photo-1598170845058-32b9d6a5da37?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1447175008436-054170c2e979?w=400&h=400&fit=crop"
+    ],
+    "min_price": 2.50,
     "variants": [
-      {"id": "v1", "display_name": "500g bag", "unit_to_display": "500g", "price_with_fees": 2.5, "stock_on_hand": 10},
-      {"id": "v2", "display_name": "1kg bag", "unit_to_display": "1kg", "price_with_fees": 4.5, "stock_on_hand": 5}
+      {"id": "v1", "display_name": "500g bunch", "unit_to_display": "500g", "price_with_fees": 2.50, "stock_on_hand": 45},
+      {"id": "v2", "display_name": "1kg bag", "unit_to_display": "1kg", "price_with_fees": 4.50, "stock_on_hand": 30}
     ],
     "taxon_ids": ["t1"],
     "property_ids": ["pr1"]

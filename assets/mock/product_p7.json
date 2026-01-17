@@ -1,0 +1,19 @@
+{
+  "product": {
+    "id": "p7",
+    "name": "Free-Range Eggs",
+    "supplier_name": "Green Valley Organics",
+    "description": "Farm-fresh eggs from happy, free-range hens. Rich golden yolks with superior taste. Perfect for breakfast or baking.",
+    "images": [
+      "https://images.unsplash.com/photo-1582722872445-44dc5f7e3c8f?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1506976785307-8732e854ad03?w=400&h=400&fit=crop"
+    ],
+    "min_price": 5.00,
+    "variants": [
+      {"id": "v13", "display_name": "Half dozen", "unit_to_display": "6 eggs", "price_with_fees": 5.00, "stock_on_hand": 40},
+      {"id": "v14", "display_name": "Dozen", "unit_to_display": "12 eggs", "price_with_fees": 9.00, "stock_on_hand": 30}
+    ],
+    "taxon_ids": ["t4"],
+    "property_ids": ["pr4"]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "product": {
+    "id": "p2",
+    "name": "Fresh Tomatoes",
+    "supplier_name": "Green Valley Organics",
+    "description": "Vine-ripened tomatoes bursting with flavor. Grown without pesticides in our greenhouse. Perfect for salads, sandwiches, or sauces.",
+    "images": [
+      "https://images.unsplash.com/photo-1546470427-227c7369a9b5?w=400&h=400&fit=crop",
+      "https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400&h=400&fit=crop"
+    ],
+    "min_price": 3.00,
+    "variants": [
+      {"id": "v3", "display_name": "500g pack", "unit_to_display": "500g", "price_with_fees": 3.00, "stock_on_hand": 35},
+      {"id": "v4", "display_name": "1kg box", "unit_to_display": "1kg", "price_with_fees": 5.50, "stock_on_hand": 20}
+    ],
+    "taxon_ids": ["t1"],
+    "property_ids": ["pr1"]
+  }
+}
