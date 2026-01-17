@@ -30,9 +30,13 @@ jobs:
 
       - name: Get dependencies
         run: flutter pub get
+        env:
+          MAPBOX_DOWNLOADS_TOKEN: ${{ secrets.MAPBOX_DOWNLOADS_TOKEN }}
 
       - name: Build APK
         run: flutter build apk --release
+        env:
+          MAPBOX_DOWNLOADS_TOKEN: ${{ secrets.MAPBOX_DOWNLOADS_TOKEN }}
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
