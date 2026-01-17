@@ -6,8 +6,8 @@ import 'package:sellingapp/models/enterprise.dart';
 import 'package:sellingapp/nav.dart';
 import 'package:sellingapp/theme.dart';
 import 'package:sellingapp/core/favorites.dart';
+import 'package:sellingapp/widgets/enterprise_list_item.dart';
 import 'dart:async';
-// Content-only page rendered inside NavShell
 
 final discoverQueryProvider = rp.NotifierProvider<_QueryNotifier, String>(() => _QueryNotifier());
 
@@ -35,7 +35,8 @@ class DiscoverPage extends rp.ConsumerStatefulWidget {
   rp.ConsumerState<DiscoverPage> createState() => _DiscoverPageState();
 }
 
-class _DiscoverPageState extends rp.ConsumerState<DiscoverPage> with SingleTickerProviderStateMixin {
+class _DiscoverPageState extends rp.ConsumerState<DiscoverPage>
+    with SingleTickerProviderStateMixin {
   late final TabController _tabController;
   Timer? _debounce;
   final _searchController = TextEditingController();
@@ -47,31 +48,122 @@ class _DiscoverPageState extends rp.ConsumerState<DiscoverPage> with SingleTicke
   }
 
   @override
+  void dispose() {
+    _tabController.dispose();
+    _searchController.dispose();
+    _debounce?.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
-    return Column(children: [
-      Padding(
-        padding: AppSpacing.horizontalMd.add(AppSpacing.verticalSm),
-        child: TextField(
-          controller: _searchController,
-          decoration: InputDecoration(prefixIcon: Icon(Icons.search, color: scheme.primary), hintText: 'Search shops and producers'),
-          onChanged: (v) {
-            _debounce?.cancel();
-            _debounce = Timer(const Duration(milliseconds: 350), () => ref.read(discoverQueryProvider.notifier).state = v);
-          },
+    final textTheme = Theme.of(context).textTheme;
+
+    return Column(
+      children: [
+        // Search bar - Google style pill
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 0),
+          child: Container(
+            decoration: BoxDecoration(
+              color: scheme.surfaceContainerHighest,
+              borderRadius: BorderRadius.circular(28),
+              boxShadow: [
+                BoxShadow(
+                  color: scheme.shadow.withOpacity(0.05),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            child: TextField(
+              controller: _searchController,
+              decoration: InputDecoration(
+                prefixIcon: Icon(Icons.search_rounded, color: scheme.onSurfaceVariant),
+                hintText: 'Search shops and producers',
+                hintStyle: textTheme.bodyLarge?.copyWith(
+                  color: scheme.onSurfaceVariant,
+                ),
+                border: InputBorder.none,
+                enabledBorder: InputBorder.none,
+                focusedBorder: InputBorder.none,
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+                suffixIcon: _searchController.text.isNotEmpty
+                    ? IconButton(
+                        icon: Icon(Icons.clear_rounded, color: scheme.onSurfaceVariant),
+                        onPressed: () {
+                          _searchController.clear();
+                          ref.read(discoverQueryProvider.notifier).state = '';
+                          setState(() {});
+                        },
+                      )
+                    : null,
+              ),
+              onChanged: (v) {
+                setState(() {});
+                _debounce?.cancel();
+                _debounce = Timer(
+                  const Duration(milliseconds: 350),
+                  () => ref.read(discoverQueryProvider.notifier).state = v,
+                );
+              },
+            ),
+          ),
         ),
-      ),
-      TabBar(
-        controller: _tabController,
-        tabs: const [Tab(text: 'Shops'), Tab(text: 'Producers')],
-      ),
-      Expanded(
-        child: TabBarView(controller: _tabController, children: [
-          _EnterpriseList(isProducers: false),
-          _EnterpriseList(isProducers: true),
-        ]),
-      )
-    ]);
+
+        const SizedBox(height: 12),
+
+        // Tab bar - segmented style
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 16),
+          decoration: BoxDecoration(
+            color: scheme.surfaceContainerHighest.withOpacity(0.5),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: TabBar(
+            controller: _tabController,
+            indicator: BoxDecoration(
+              color: scheme.primaryContainer,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  color: scheme.primary.withOpacity(0.2),
+                  blurRadius: 8,
+                  offset: const Offset(0, 2),
+                ),
+              ],
+            ),
+            indicatorSize: TabBarIndicatorSize.tab,
+            indicatorPadding: const EdgeInsets.all(4),
+            dividerColor: Colors.transparent,
+            labelColor: scheme.onPrimaryContainer,
+            unselectedLabelColor: scheme.onSurfaceVariant,
+            labelStyle: textTheme.labelLarge?.copyWith(fontWeight: FontWeight.w600),
+            unselectedLabelStyle: textTheme.labelLarge,
+            splashFactory: InkSparkle.splashFactory,
+            overlayColor: WidgetStateProperty.all(scheme.primary.withOpacity(0.08)),
+            tabs: const [
+              Tab(text: 'Shops'),
+              Tab(text: 'Producers'),
+            ],
+          ),
+        ),
+
+        const SizedBox(height: 8),
+
+        // Content
+        Expanded(
+          child: TabBarView(
+            controller: _tabController,
+            children: [
+              _EnterpriseList(isProducers: false),
+              _EnterpriseList(isProducers: true),
+            ],
+          ),
+        ),
+      ],
+    );
   }
 }
 
@@ -84,6 +176,9 @@ class _EnterpriseList extends rp.ConsumerWidget {
     final async = ref.watch(isProducers ? producersProvider : shopsProvider);
     final favsAsync = ref.watch(favoritesProvider);
     final favOnly = ref.watch(discoverFavoritesOnlyProvider);
+    final scheme = Theme.of(context).colorScheme;
+    final textTheme = Theme.of(context).textTheme;
+
     return async.when(
       data: (items) {
         return favsAsync.when(
@@ -91,129 +186,117 @@ class _EnterpriseList extends rp.ConsumerWidget {
             final filtered = favOnly
                 ? items.where((e) => favs.shopIds.contains(e.id)).toList()
                 : items;
+
             if (filtered.isEmpty) {
-              return _EmptyState(
-                title: favOnly ? 'No favorites yet' : 'No results',
-                actionLabel: favOnly ? 'Browse all' : null,
-                onAction: favOnly ? () => ref.read(discoverFavoritesOnlyProvider.notifier).toggle() : null,
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(32),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: 80,
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: scheme.surfaceContainerHighest,
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                          favOnly ? Icons.favorite_border_rounded : Icons.search_off_rounded,
+                          size: 40,
+                          color: scheme.onSurfaceVariant,
+                        ),
+                      ),
+                      const SizedBox(height: 24),
+                      Text(
+                        favOnly ? 'No favorites yet' : 'No results found',
+                        style: textTheme.titleMedium,
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        favOnly
+                            ? 'Tap the heart icon to save favorites'
+                            : 'Try adjusting your search',
+                        style: textTheme.bodyMedium?.copyWith(
+                          color: scheme.onSurfaceVariant,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               );
             }
-            return LayoutBuilder(builder: (context, constraints) {
-              final isGrid = constraints.maxWidth > 700;
-              final crossAxisCount = constraints.maxWidth > 1100 ? 3 : 2;
-              if (!isGrid) {
-                return ListView.separated(
-                  itemCount: filtered.length,
-                  separatorBuilder: (_, __) => const SizedBox(height: 8),
-                  padding: const EdgeInsets.all(12),
-                  itemBuilder: (context, index) => _EnterpriseCard(e: filtered[index], isProducer: isProducers),
+
+            return ListView.separated(
+              padding: const EdgeInsets.all(16),
+              itemCount: filtered.length,
+              separatorBuilder: (_, __) => const SizedBox(height: 16),
+              itemBuilder: (context, index) {
+                final e = filtered[index];
+                return EnterpriseListItem(
+                  e: e,
+                  onTap: () => context.push(
+                    isProducers ? '/producers/${e.id}' : '/shops/${e.id}',
+                  ),
                 );
-              }
-              return GridView.builder(
-                padding: const EdgeInsets.all(12),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: crossAxisCount, crossAxisSpacing: 12, mainAxisSpacing: 12, childAspectRatio: 3.3),
-                itemCount: filtered.length,
-                itemBuilder: (context, index) => _EnterpriseCard(e: filtered[index], isProducer: isProducers),
-              );
-            });
+              },
+            );
           },
-          loading: () => const _ListSkeleton(),
-          error: (e, _) => _ErrorState(message: 'Failed to load favorites', onRetry: () => ref.invalidate(favoritesProvider)),
+          loading: () => _buildSkeleton(scheme),
+          error: (_, __) => _buildError(context, ref, scheme, textTheme),
         );
       },
-      loading: () => const _ListSkeleton(),
-      error: (e, st) => _ErrorState(message: 'Error: $e', onRetry: () => ref.invalidate(isProducers ? producersProvider : shopsProvider)),
+      loading: () => _buildSkeleton(scheme),
+      error: (_, __) => _buildError(context, ref, scheme, textTheme),
     );
   }
-}
 
-class _EnterpriseCard extends rp.ConsumerWidget {
-  final Enterprise e;
-  final bool isProducer;
-  const _EnterpriseCard({required this.e, required this.isProducer});
-  @override
-  Widget build(BuildContext context, rp.WidgetRef ref) {
-    final favs = ref.watch(favoritesProvider).asData?.value;
-    final isFav = favs?.shopIds.contains(e.id) ?? false;
-    final isOpen = e.ordersCloseAt == null || e.ordersCloseAt!.isAfter(DateTime.now());
-    final scheme = Theme.of(context).colorScheme;
-    return Card(
-      child: InkWell(
-        onTap: () => context.push(isProducer ? '/producers/${e.id}' : '/shops/${e.id}'),
-        child: Padding(
-          padding: AppSpacing.paddingSm,
-          child: Row(children: [
-            CircleAvatar(child: Text(e.name.isNotEmpty ? e.name[0] : '?')),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(e.name, style: Theme.of(context).textTheme.titleSmall, maxLines: 1, overflow: TextOverflow.ellipsis),
-                Text(e.shortDescription ?? 'Fresh local produce', maxLines: 2, overflow: TextOverflow.ellipsis),
-                const SizedBox(height: 4),
-                Wrap(spacing: 6, children: [
-                  Chip(visualDensity: VisualDensity.compact, label: Text(isOpen ? 'Open' : 'Closed'), backgroundColor: isOpen ? scheme.primaryContainer : scheme.errorContainer),
-                  if (e.pickupAvailable) Chip(visualDensity: VisualDensity.compact, label: const Text('Pickup'), avatar: Icon(Icons.store_mall_directory, color: scheme.primary)),
-                  if (e.deliveryAvailable) Chip(visualDensity: VisualDensity.compact, label: const Text('Delivery'), avatar: Icon(Icons.local_shipping, color: scheme.primary)),
-                ])
-              ]),
-            ),
-            const SizedBox(width: 8),
-            Semantics(
-              button: true,
-              label: isFav ? 'Remove from favorites' : 'Add to favorites',
-              child: IconButton(
-                icon: Icon(isFav ? Icons.favorite : Icons.favorite_border, color: isFav ? scheme.primary : scheme.onSurfaceVariant),
-                onPressed: () => ref.read(favoritesProvider.notifier).toggleShop(e.id),
-              ),
-            ),
-          ]),
+  Widget _buildSkeleton(ColorScheme scheme) {
+    return ListView.separated(
+      padding: const EdgeInsets.all(16),
+      itemCount: 4,
+      separatorBuilder: (_, __) => const SizedBox(height: 16),
+      itemBuilder: (_, __) => Container(
+        height: 220,
+        decoration: BoxDecoration(
+          color: scheme.surfaceContainerHighest.withOpacity(0.5),
+          borderRadius: BorderRadius.circular(24),
         ),
       ),
     );
   }
-}
 
-class _ListSkeleton extends StatelessWidget {
-  const _ListSkeleton();
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      padding: const EdgeInsets.all(12),
-      itemCount: 6,
-      itemBuilder: (_, __) => Card(
-        child: SizedBox(height: 72, child: Container(color: Theme.of(context).colorScheme.surfaceContainerHighest)),
+  Widget _buildError(BuildContext context, rp.WidgetRef ref, ColorScheme scheme, TextTheme textTheme) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                color: scheme.errorContainer,
+                shape: BoxShape.circle,
+              ),
+              child: Icon(
+                Icons.error_outline_rounded,
+                size: 40,
+                color: scheme.onErrorContainer,
+              ),
+            ),
+            const SizedBox(height: 24),
+            Text('Something went wrong', style: textTheme.titleMedium),
+            const SizedBox(height: 24),
+            FilledButton.icon(
+              onPressed: () => ref.invalidate(isProducers ? producersProvider : shopsProvider),
+              icon: const Icon(Icons.refresh_rounded),
+              label: const Text('Try again'),
+            ),
+          ],
+        ),
       ),
     );
   }
-}
-
-class _ErrorState extends StatelessWidget {
-  final String message;
-  final VoidCallback onRetry;
-  const _ErrorState({required this.message, required this.onRetry});
-  @override
-  Widget build(BuildContext context) => Center(
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Text(message),
-          const SizedBox(height: 8),
-          FilledButton.icon(onPressed: onRetry, icon: const Icon(Icons.refresh, color: Colors.white), label: const Text('Retry')),
-        ]),
-      );
-}
-
-class _EmptyState extends StatelessWidget {
-  final String title;
-  final String? actionLabel;
-  final VoidCallback? onAction;
-  const _EmptyState({required this.title, this.actionLabel, this.onAction});
-  @override
-  Widget build(BuildContext context) => Center(
-        child: Column(mainAxisSize: MainAxisSize.min, children: [
-          Text(title),
-          if (actionLabel != null) ...[
-            const SizedBox(height: 8),
-            OutlinedButton(onPressed: onAction, child: Text(actionLabel!)),
-          ]
-        ]),
-      );
 }

@@ -2,63 +2,73 @@
   "producers": [
     {
       "id": "p1",
-      "name": "Sunrise Orchards",
-      "short_description": "Family‑run apple & pear farm",
-      "long_description": "Seasonal fruit grown with sustainable practices.",
-      "pickup": false,
+      "name": "Sunny Acres Farm",
+      "logo_url": "https://images.unsplash.com/photo-1500076656116-558758c991c1?w=200&h=200&fit=crop",
+      "banner_url": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=400&fit=crop",
+      "short_description": "Family-owned organic farm",
+      "long_description": "Three generations of sustainable farming bringing you the freshest produce.",
+      "pickup": true,
       "delivery": true,
       "lat": 37.7721,
-      "lng": -122.4311
+      "lng": -122.4311,
+      "rating": 4.9,
+      "review_count": 445
     },
     {
       "id": "p2",
-      "name": "Blue Ocean Fisheries",
-      "short_description": "Line‑caught seafood cooperative",
-      "long_description": "Fresh, responsibly harvested fish and shellfish.",
-      "pickup": true,
+      "name": "Heritage Dairy",
+      "logo_url": "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=200&h=200&fit=crop",
+      "banner_url": "https://images.unsplash.com/photo-1628088062854-d1870b4553da?w=800&h=400&fit=crop",
+      "short_description": "Grass-fed dairy products",
+      "long_description": "Premium milk, cheese, and yogurt from pasture-raised cows.",
+      "pickup": false,
       "delivery": true,
       "lat": 37.7801,
-      "lng": -122.4152
+      "lng": -122.4152,
+      "rating": 4.7,
+      "review_count": 289
     },
     {
       "id": "p3",
-      "name": "Riverside Grain Mill",
-      "short_description": "Stone‑milled flours & grains",
-      "long_description": "Heritage wheats and freshly milled flours.",
-      "pickup": false,
+      "name": "Valley Vineyards",
+      "logo_url": "https://images.unsplash.com/photo-1474722883778-792e7990302f?w=200&h=200&fit=crop",
+      "banner_url": "https://images.unsplash.com/photo-1506377247377-2a5b3b417ebb?w=800&h=400&fit=crop",
+      "short_description": "Award-winning wines",
+      "long_description": "Small-batch wines crafted with passion from our estate vineyards.",
+      "pickup": true,
       "delivery": true,
       "lat": 37.7655,
-      "lng": -122.4421
+      "lng": -122.4421,
+      "rating": 4.8,
+      "review_count": 523
     },
     {
       "id": "p4",
-      "name": "Urban Mushroom Farm",
-      "short_description": "Gourmet oyster & shiitake",
-      "long_description": "Locally grown mushrooms for restaurants and home cooks.",
+      "name": "Honeybee Apiaries",
+      "logo_url": "https://images.unsplash.com/photo-1558642452-9d2a7deb7f62?w=200&h=200&fit=crop",
+      "banner_url": "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=800&h=400&fit=crop",
+      "short_description": "Raw local honey",
+      "long_description": "Pure, unfiltered honey from our local bee colonies.",
       "pickup": true,
-      "delivery": true,
+      "delivery": false,
       "lat": 37.7912,
-      "lng": -122.4001
+      "lng": -122.4001,
+      "rating": 4.6,
+      "review_count": 167
     },
     {
       "id": "p5",
-      "name": "Meadow Lane Dairy",
-      "short_description": "Small‑batch milk & cheese",
-      "long_description": "Pasture‑raised dairy from a third‑generation farm.",
-      "pickup": true,
-      "delivery": false,
-      "lat": 37.7558,
-      "lng": -122.4185
-    },
-    {
-      "id": "p6",
-      "name": "Citrus Grove Collective",
-      "short_description": "Seasonal oranges & lemons",
-      "long_description": "Co‑op of small citrus growers.",
+      "name": "Mountain Mushrooms",
+      "logo_url": "https://images.unsplash.com/photo-1504545102780-26774c1bb073?w=200&h=200&fit=crop",
+      "banner_url": "https://images.unsplash.com/photo-1518977676601-b53f82ber?w=800&h=400&fit=crop",
+      "short_description": "Gourmet & medicinal mushrooms",
+      "long_description": "Specialty mushrooms grown in controlled environments for peak freshness.",
       "pickup": true,
       "delivery": true,
-      "lat": 37.7789,
-      "lng": -122.3958
+      "lat": 37.7558,
+      "lng": -122.4185,
+      "rating": 4.5,
+      "review_count": 134
     }
   ]
 }
