@@ -6,16 +6,26 @@ import 'package:sellingapp/features/products/presentation/pages/product_detail_p
 import 'package:sellingapp/features/cart/presentation/pages/cart_page.dart';
 import 'package:sellingapp/features/checkout/presentation/pages/checkout_flow_page.dart';
 import 'package:sellingapp/features/checkout/presentation/pages/order_confirmation_page.dart';
-import 'package:sellingapp/features/account/presentation/pages/admin_settings_page.dart';
+import 'package:sellingapp/features/account/presentation/pages/admin_mode_page.dart';
 import 'package:sellingapp/features/account/presentation/pages/account_page.dart';
 import 'package:sellingapp/features/discover/presentation/pages/producer_detail_page.dart';
 import 'package:sellingapp/features/account/presentation/pages/favorites_page.dart';
-import 'package:sellingapp/features/account/presentation/pages/orders_page.dart';
+import 'package:sellingapp/features/account/presentation/pages/orders_or_reservations_page.dart';
 import 'package:sellingapp/features/account/presentation/pages/profile_page.dart';
 import 'package:sellingapp/features/account/presentation/pages/settings_page.dart';
+import 'package:sellingapp/features/account/presentation/pages/my_listings_page.dart';
+import 'package:sellingapp/features/account/presentation/pages/offers_page.dart';
+import 'package:sellingapp/features/account/presentation/pages/location_settings_page.dart';
+import 'package:sellingapp/features/account/presentation/pages/notification_settings_page.dart';
+import 'package:sellingapp/features/account/presentation/pages/appearance_page.dart';
+import 'package:sellingapp/features/account/presentation/pages/support_page.dart';
+import 'package:sellingapp/features/account/presentation/pages/about_page.dart';
+import 'package:sellingapp/features/account/presentation/pages/login_page.dart';
 import 'package:sellingapp/nav_shell.dart';
 import 'package:sellingapp/features/map/presentation/pages/map_page.dart';
-import 'package:sellingapp/widgets/page_transitions.dart';
+import 'package:sellingapp/screens/home/home_screen_v2.dart';
+import 'package:sellingapp/screens/category/category_browse_screen.dart';
+import 'package:sellingapp/screens/category/urgency_browse_screen.dart';
 
 /// GoRouter configuration for app navigation
 ///
@@ -31,7 +41,9 @@ import 'package:sellingapp/widgets/page_transitions.dart';
 /// 3. Navigate using context.go() or context.push()
 /// 4. Use context.pop() to go back.
 class AppRouter {
+  static final _rootNavigatorKey = GlobalKey<NavigatorState>();
   static final GoRouter router = GoRouter(
+    navigatorKey: _rootNavigatorKey,
     initialLocation: AppRoutes.discover,
     routes: [
       StatefulShellRoute.indexedStack(
@@ -40,7 +52,7 @@ class AppRouter {
           StatefulShellBranch(routes: [
             GoRoute(
               path: AppRoutes.discover,
-              pageBuilder: (context, state) => const NoTransitionPage(child: DiscoverPage()),
+              pageBuilder: (context, state) => const NoTransitionPage(child: HomeScreenV2()),
             ),
           ]),
           StatefulShellBranch(routes: [
@@ -62,7 +74,7 @@ class AppRouter {
               routes: [
                 GoRoute(
                   path: 'admin',
-                  pageBuilder: (context, state) => const NoTransitionPage(child: AdminSettingsPage()),
+                  pageBuilder: (context, state) => const NoTransitionPage(child: AdminModePage()),
                 ),
                 GoRoute(
                   path: 'favorites',
@@ -70,7 +82,7 @@ class AppRouter {
                 ),
                 GoRoute(
                   path: 'orders',
-                  pageBuilder: (context, state) => const NoTransitionPage(child: OrdersPage()),
+                  pageBuilder: (context, state) => const NoTransitionPage(child: OrdersOrReservationsPage()),
                 ),
                 GoRoute(
                   path: 'profile',
@@ -80,17 +92,67 @@ class AppRouter {
                   path: 'settings',
                   pageBuilder: (context, state) => const NoTransitionPage(child: SettingsPage()),
                 ),
+                GoRoute(
+                  path: 'my-listings',
+                  pageBuilder: (context, state) => const NoTransitionPage(child: MyListingsPage()),
+                ),
+                GoRoute(
+                  path: 'offers',
+                  pageBuilder: (context, state) => const NoTransitionPage(child: OffersPage()),
+                ),
+                GoRoute(
+                  path: 'location',
+                  pageBuilder: (context, state) => const NoTransitionPage(child: LocationSettingsPage()),
+                ),
+                GoRoute(
+                  path: 'notifications',
+                  pageBuilder: (context, state) => const NoTransitionPage(child: NotificationSettingsPage()),
+                ),
+                GoRoute(
+                  path: 'appearance',
+                  pageBuilder: (context, state) => const NoTransitionPage(child: AppearancePage()),
+                ),
+                GoRoute(
+                  path: 'support',
+                  pageBuilder: (context, state) => const NoTransitionPage(child: SupportPage()),
+                ),
+                GoRoute(
+                  path: 'about',
+                  pageBuilder: (context, state) => const NoTransitionPage(child: AboutPage()),
+                ),
               ],
             ),
           ]),
         ],
+      ),
+      // Category browse screen – outside the shell so it appears full-screen.
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppRoutes.category,
+        pageBuilder: (context, state) {
+          final slug = state.pathParameters['slug']!;
+          final title = (state.extra is Map && (state.extra as Map).containsKey('title')) ? (state.extra as Map)['title'] as String? : null;
+          return NoTransitionPage(child: CategoryBrowseScreen(slug: slug, title: title));
+        },
+      ),
+      // Urgency browse screen – outside the shell, full-screen without bottom nav
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppRoutes.urgency,
+        pageBuilder: (context, state) {
+          final window = state.pathParameters['window']!; // e.g., 2h, 8h
+          final title = (state.extra is Map && (state.extra as Map).containsKey('title')) ? (state.extra as Map)['title'] as String? : null;
+          return NoTransitionPage(
+            child: UrgencyBrowseScreen(window: window, title: title),
+          );
+        },
       ),
       GoRoute(
         path: AppRoutes.shopfront,
         name: 'shopfront',
         pageBuilder: (context, state) {
           final id = state.pathParameters['id']!;
-          return SharedAxisTransition(child: ShopfrontPage(enterpriseId: id));
+          return NoTransitionPage(child: ShopfrontPage(enterpriseId: id));
         },
       ),
       GoRoute(
@@ -98,7 +160,7 @@ class AppRouter {
         name: 'producer',
         pageBuilder: (context, state) {
           final id = state.pathParameters['id']!;
-          return SharedAxisTransition(child: ProducerDetailPage(id: id));
+          return NoTransitionPage(child: ProducerDetailPage(id: id));
         },
       ),
       GoRoute(
@@ -106,18 +168,24 @@ class AppRouter {
         name: 'product',
         pageBuilder: (context, state) {
           final id = state.pathParameters['id']!;
-          return SharedAxisTransition(child: ProductDetailPage(productId: id));
+          return NoTransitionPage(child: ProductDetailPage(productId: id));
         },
       ),
       GoRoute(
         path: AppRoutes.checkout,
         name: 'checkout',
-        pageBuilder: (context, state) => BottomSheetTransition(child: const CheckoutFlowPage()),
+        pageBuilder: (context, state) => const NoTransitionPage(child: CheckoutFlowPage()),
       ),
       GoRoute(
         path: AppRoutes.confirmation,
         name: 'confirmation',
-        pageBuilder: (context, state) => FadeThroughTransition(child: const OrderConfirmationPage()),
+        pageBuilder: (context, state) => const NoTransitionPage(child: OrderConfirmationPage()),
+      ),
+      // Login outside the shell
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppRoutes.login,
+        pageBuilder: (context, state) => const NoTransitionPage(child: LoginPage()),
       ),
     ],
   );
@@ -128,6 +196,8 @@ class AppRouter {
 class AppRoutes {
   static const String discover = '/';
   static const String map = '/map';
+  static const String category = '/category/:slug';
+  static const String urgency = '/urgency/:window';
   static const String shopfront = '/shops/:id';
   static const String producer = '/producers/:id';
   static const String product = '/products/:id';
@@ -135,4 +205,8 @@ class AppRoutes {
   static const String account = '/account';
   static const String checkout = '/checkout';
   static const String confirmation = '/confirmation';
+  static const String login = '/login';
+
+  static String categoryBrowsePath(String slug) => '/category/$slug';
+  static String urgencyBrowsePath(String window) => '/urgency/$window';
 }

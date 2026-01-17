@@ -2,87 +2,63 @@
   "producers": [
     {
       "id": "p1",
-      "name": "BioHealth Labs",
-      "logo_url": "https://images.unsplash.com/photo-1559757175-5700dde675bc?w=400&h=300&fit=crop",
-      "banner_url": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&h=400&fit=crop",
-      "short_description": "Organic supplements manufacturer",
-      "long_description": "Premium organic vitamins and supplements made in California. All products are third-party tested for purity and potency.",
+      "name": "Sunrise Orchards",
+      "short_description": "Family‑run apple & pear farm",
+      "long_description": "Seasonal fruit grown with sustainable practices.",
       "pickup": false,
       "delivery": true,
       "lat": 37.7721,
-      "lng": -122.4311,
-      "rating": 4.9,
-      "review_count": 523
+      "lng": -122.4311
     },
     {
       "id": "p2",
-      "name": "NatureCure Remedies",
-      "logo_url": "https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=400&h=300&fit=crop",
-      "banner_url": "https://images.unsplash.com/photo-1512069772995-ec65ed45afd6?w=800&h=400&fit=crop",
-      "short_description": "Herbal medicine producer",
-      "long_description": "Traditional herbal remedies using sustainably sourced ingredients. Family recipes passed down for generations.",
+      "name": "Blue Ocean Fisheries",
+      "short_description": "Line‑caught seafood cooperative",
+      "long_description": "Fresh, responsibly harvested fish and shellfish.",
       "pickup": true,
       "delivery": true,
       "lat": 37.7801,
-      "lng": -122.4152,
-      "rating": 4.7,
-      "review_count": 289
+      "lng": -122.4152
     },
     {
       "id": "p3",
-      "name": "PureVita Supplements",
-      "logo_url": "https://images.unsplash.com/photo-1550572017-edd951aa8f72?w=400&h=300&fit=crop",
-      "banner_url": "https://images.unsplash.com/photo-1505751172876-fa1923c5c528?w=800&h=400&fit=crop",
-      "short_description": "Vitamin & mineral supplements",
-      "long_description": "High-quality vitamins at wholesale prices. Subscribe and save 20% on monthly deliveries.",
+      "name": "Riverside Grain Mill",
+      "short_description": "Stone‑milled flours & grains",
+      "long_description": "Heritage wheats and freshly milled flours.",
       "pickup": false,
       "delivery": true,
       "lat": 37.7655,
-      "lng": -122.4421,
-      "rating": 4.6,
-      "review_count": 412
+      "lng": -122.4421
     },
     {
       "id": "p4",
-      "name": "MedEquip Direct",
-      "logo_url": "https://images.unsplash.com/photo-1516549655169-df83a0774514?w=400&h=300&fit=crop",
-      "banner_url": "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?w=800&h=400&fit=crop",
-      "short_description": "Medical equipment supplier",
-      "long_description": "Home medical equipment and mobility aids. Free setup and training included with all purchases.",
+      "name": "Urban Mushroom Farm",
+      "short_description": "Gourmet oyster & shiitake",
+      "long_description": "Locally grown mushrooms for restaurants and home cooks.",
       "pickup": true,
       "delivery": true,
       "lat": 37.7912,
-      "lng": -122.4001,
-      "rating": 4.8,
-      "review_count": 167
+      "lng": -122.4001
     },
     {
       "id": "p5",
-      "name": "Wellness Essentials Co",
-      "logo_url": "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?w=400&h=300&fit=crop",
-      "banner_url": "https://images.unsplash.com/photo-1556228720-195a672e8a03?w=800&h=400&fit=crop",
-      "short_description": "Health & wellness products",
-      "long_description": "Essential oils, aromatherapy, and wellness accessories. All products are cruelty-free and eco-friendly.",
+      "name": "Meadow Lane Dairy",
+      "short_description": "Small‑batch milk & cheese",
+      "long_description": "Pasture‑raised dairy from a third‑generation farm.",
       "pickup": true,
       "delivery": false,
       "lat": 37.7558,
-      "lng": -122.4185,
-      "rating": 4.5,
-      "review_count": 234
+      "lng": -122.4185
     },
     {
       "id": "p6",
-      "name": "GeneriMed Wholesale",
-      "logo_url": "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=400&h=300&fit=crop",
-      "banner_url": "https://images.unsplash.com/photo-1576671081837-49000212a370?w=800&h=400&fit=crop",
-      "short_description": "Generic drug distributor",
-      "long_description": "Bulk generic medications for pharmacies. FDA-approved products at competitive prices.",
+      "name": "Citrus Grove Collective",
+      "short_description": "Seasonal oranges & lemons",
+      "long_description": "Co‑op of small citrus growers.",
       "pickup": true,
       "delivery": true,
       "lat": 37.7789,
-      "lng": -122.3958,
-      "rating": 4.4,
-      "review_count": 89
+      "lng": -122.3958
     }
   ]
 }
