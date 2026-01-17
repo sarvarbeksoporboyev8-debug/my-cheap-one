@@ -2,18 +2,16 @@
   "shop": {
     "id": "3",
     "name": "Urban Harvest Co-op",
-    "description": "Community-owned cooperative bringing you the best local and artisanal products. Member-owned, community-focused.",
-    "logo_url": "https://images.unsplash.com/photo-1595855759920-86582396756a?w=200&h=200&fit=crop",
-    "cover_url": "https://images.unsplash.com/photo-1578916171728-46686eac8d58?w=800&h=400&fit=crop",
-    "address": "789 City Avenue",
-    "city": "New York",
-    "phone": "+1 555-0103",
+    "logo_url": "https://images.unsplash.com/photo-1573246123716-6b1782bfc499?w=200&h=200&fit=crop",
+    "banner_url": "https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=800&h=400&fit=crop",
+    "short_description": "Community-owned grocery",
+    "long_description": "Member-owned cooperative supporting local farmers and sustainable practices. Community-focused since 2015.",
+    "pickup": true,
+    "delivery": true,
+    "orders_close_at": "2026-12-31T23:59:00Z",
+    "lat": 37.7694,
+    "lng": -122.4262,
     "rating": 4.7,
-    "review_count": 215,
-    "delivery_fee": 2.49,
-    "delivery_time": "20-30 min",
-    "categories": ["Local", "Artisanal", "Specialty"],
-    "is_open": true,
-    "opening_hours": "9:00 AM - 8:00 PM"
+    "review_count": 189
   }
 }

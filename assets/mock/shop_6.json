@@ -2,18 +2,16 @@
   "shop": {
     "id": "6",
     "name": "The Cheese Shop",
-    "description": "Curated selection of artisan cheeses from around the world. Expert staff to help you find the perfect pairing.",
-    "logo_url": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=200&h=200&fit=crop",
-    "cover_url": "https://images.unsplash.com/photo-1452195100486-9cc805987862?w=800&h=400&fit=crop",
-    "address": "42 Gourmet Lane",
-    "city": "New York",
-    "phone": "+1 555-0106",
+    "logo_url": "https://images.unsplash.com/photo-1452195100486-9cc805987862?w=200&h=200&fit=crop",
+    "banner_url": "https://images.unsplash.com/photo-1486297678162-eb2a19b0a32d?w=800&h=400&fit=crop",
+    "short_description": "Artisan cheeses worldwide",
+    "long_description": "Curated selection of fine cheeses from around the world. Expert staff to help you find the perfect pairing.",
+    "pickup": true,
+    "delivery": true,
+    "orders_close_at": "2026-12-31T23:59:00Z",
+    "lat": 37.7829,
+    "lng": -122.4324,
     "rating": 4.8,
-    "review_count": 267,
-    "delivery_fee": 3.99,
-    "delivery_time": "25-35 min",
-    "categories": ["Cheese", "Dairy", "Gourmet"],
-    "is_open": true,
-    "opening_hours": "10:00 AM - 8:00 PM"
+    "review_count": 267
   }
 }

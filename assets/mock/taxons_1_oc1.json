@@ -1,11 +1,11 @@
 {
   "taxons": [
-    {"id": "t1", "name": "Vegetables", "icon": "eco"},
-    {"id": "t2", "name": "Fruits", "icon": "nutrition"},
-    {"id": "t3", "name": "Bakery", "icon": "bakery_dining"},
-    {"id": "t4", "name": "Dairy & Eggs", "icon": "egg"},
-    {"id": "t5", "name": "Pantry", "icon": "kitchen"},
-    {"id": "t6", "name": "Meat & Seafood", "icon": "set_meal"},
-    {"id": "t7", "name": "Beverages", "icon": "local_cafe"}
+    {"id": "t1", "name": "Vegetables"},
+    {"id": "t2", "name": "Fruits"},
+    {"id": "t3", "name": "Bakery"},
+    {"id": "t4", "name": "Dairy & Eggs"},
+    {"id": "t5", "name": "Pantry"},
+    {"id": "t6", "name": "Meat & Seafood"},
+    {"id": "t7", "name": "Beverages"}
   ]
 }

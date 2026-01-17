@@ -2,18 +2,16 @@
   "shop": {
     "id": "5",
     "name": "Pacific Seafood",
-    "description": "Fresh seafood delivered daily from local fishermen. Sustainable sourcing, premium quality. From ocean to table.",
     "logo_url": "https://images.unsplash.com/photo-1534604973900-c43ab4c2e0ab?w=200&h=200&fit=crop",
-    "cover_url": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&h=400&fit=crop",
-    "address": "555 Harbor Drive",
-    "city": "New York",
-    "phone": "+1 555-0105",
-    "rating": 4.6,
-    "review_count": 178,
-    "delivery_fee": 4.99,
-    "delivery_time": "35-45 min",
-    "categories": ["Seafood", "Fresh Fish", "Shellfish"],
-    "is_open": true,
-    "opening_hours": "7:00 AM - 6:00 PM"
+    "banner_url": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&h=400&fit=crop",
+    "short_description": "Fresh catch daily",
+    "long_description": "Sustainably sourced seafood delivered fresh from the Pacific. From ocean to table.",
+    "pickup": true,
+    "delivery": false,
+    "orders_close_at": "2026-12-31T23:59:00Z",
+    "lat": 37.7619,
+    "lng": -122.4348,
+    "rating": 4.5,
+    "review_count": 98
   }
 }

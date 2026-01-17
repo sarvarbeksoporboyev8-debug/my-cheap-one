@@ -2,18 +2,16 @@
   "shop": {
     "id": "2",
     "name": "Green Valley Organics",
-    "description": "100% certified organic produce and products. Supporting local farmers and sustainable agriculture since 2010.",
-    "logo_url": "https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=200&h=200&fit=crop",
-    "cover_url": "https://images.unsplash.com/photo-1506484381205-f7945b73ed85?w=800&h=400&fit=crop",
-    "address": "456 Farm Road",
-    "city": "New York",
-    "phone": "+1 555-0102",
+    "logo_url": "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?w=200&h=200&fit=crop",
+    "banner_url": "https://images.unsplash.com/photo-1506484381205-f7945b73c1d1?w=800&h=400&fit=crop",
+    "short_description": "Certified organic produce",
+    "long_description": "100% certified organic fruits and vegetables from local farms. Supporting sustainable agriculture since 2010.",
+    "pickup": true,
+    "delivery": false,
+    "orders_close_at": "2026-12-31T23:59:00Z",
+    "lat": 37.7851,
+    "lng": -122.4089,
     "rating": 4.9,
-    "review_count": 528,
-    "delivery_fee": 3.49,
-    "delivery_time": "30-40 min",
-    "categories": ["Organic", "Produce", "Health Foods"],
-    "is_open": true,
-    "opening_hours": "8:00 AM - 9:00 PM"
+    "review_count": 312
   }
 }
