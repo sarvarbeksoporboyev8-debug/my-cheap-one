@@ -416,6 +416,13 @@ class _DriverModePageState extends ConsumerState<DriverModePage> {
               ],
             ),
           ),
+          const SizedBox(width: 8),
+          // Settings button
+          IconButton(
+            icon: Icon(Icons.settings_outlined, color: scheme.onSurfaceVariant),
+            onPressed: () => context.push('/driver/settings'),
+            tooltip: 'Driver Settings',
+          ),
         ],
       ),
     );

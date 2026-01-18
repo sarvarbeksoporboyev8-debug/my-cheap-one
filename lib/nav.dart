@@ -29,6 +29,8 @@ import 'package:sellingapp/screens/category/urgency_browse_screen.dart';
 import 'package:sellingapp/features/delivery/presentation/pages/searching_driver_page.dart';
 import 'package:sellingapp/features/delivery/presentation/pages/delivery_tracking_page.dart';
 import 'package:sellingapp/features/delivery/presentation/pages/driver_mode_page.dart';
+import 'package:sellingapp/features/delivery/presentation/pages/driver_settings_page.dart';
+import 'package:sellingapp/features/delivery/presentation/pages/driver_placeholder_pages.dart';
 
 /// GoRouter configuration for app navigation
 ///
@@ -212,6 +214,32 @@ class AppRouter {
         path: AppRoutes.driverMode,
         pageBuilder: (context, state) => const NoTransitionPage(child: DriverModePage()),
       ),
+      // Driver settings and sub-pages
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppRoutes.driverSettings,
+        pageBuilder: (context, state) => const NoTransitionPage(child: DriverSettingsPage()),
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppRoutes.driverProfile,
+        pageBuilder: (context, state) => const NoTransitionPage(child: DriverProfilePage()),
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppRoutes.driverVehicle,
+        pageBuilder: (context, state) => const NoTransitionPage(child: DriverVehiclePage()),
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppRoutes.driverDocuments,
+        pageBuilder: (context, state) => const NoTransitionPage(child: DriverDocumentsPage()),
+      ),
+      GoRoute(
+        parentNavigatorKey: _rootNavigatorKey,
+        path: AppRoutes.driverPayout,
+        pageBuilder: (context, state) => const NoTransitionPage(child: DriverPayoutPage()),
+      ),
     ],
   );
 }
@@ -236,6 +264,11 @@ class AppRoutes {
   static const String searchingDriver = '/delivery/searching/:deliveryId';
   static const String deliveryTracking = '/delivery/tracking/:deliveryId';
   static const String driverMode = '/driver-mode';
+  static const String driverSettings = '/driver/settings';
+  static const String driverProfile = '/driver/profile';
+  static const String driverVehicle = '/driver/vehicle';
+  static const String driverDocuments = '/driver/documents';
+  static const String driverPayout = '/driver/payout';
 
   static String categoryBrowsePath(String slug) => '/category/$slug';
   static String urgencyBrowsePath(String window) => '/urgency/$window';
