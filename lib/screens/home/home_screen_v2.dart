@@ -95,16 +95,20 @@ class HomeScreenV2 extends rp.ConsumerWidget {
     );
   }
 
-  Widget _cardSkeleton(BuildContext context) => SizedBox(
-        width: 150,
+  Widget _cardSkeleton(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+    final cardWidth = (screenWidth - 48) / 2.5;
+    return SizedBox(
+        width: cardWidth,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          ClipRRect(borderRadius: BorderRadius.circular(12), child: Container(height: 110, color: Theme.of(context).colorScheme.surfaceContainerHighest)),
-          const SizedBox(height: 8),
-          Container(height: 12, width: 120, color: Theme.of(context).colorScheme.surfaceContainerHighest),
+          ClipRRect(borderRadius: BorderRadius.circular(14), child: Container(height: 140, color: Theme.of(context).colorScheme.surfaceContainerHighest)),
+          const SizedBox(height: 10),
+          Container(height: 14, width: cardWidth * 0.8, color: Theme.of(context).colorScheme.surfaceContainerHighest),
           const SizedBox(height: 6),
-          Container(height: 10, width: 90, color: Theme.of(context).colorScheme.surfaceContainerHighest),
+          Container(height: 12, width: cardWidth * 0.6, color: Theme.of(context).colorScheme.surfaceContainerHighest),
         ]),
       );
+  }
 
   Widget _featuredSkeleton(BuildContext context) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),

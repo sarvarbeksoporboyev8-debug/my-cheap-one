@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sellingapp/models/enterprise.dart';
 
-// Unified height for the Popular preview carousel to avoid overflow on small screens
-const double kPopularCardHeight = 210;
+// Unified height for the Popular preview carousel - increased for larger cards
+const double kPopularCardHeight = 260;
 
 class HorizontalListingCarousel extends StatelessWidget {
   final List<Enterprise> items;
@@ -13,6 +13,10 @@ class HorizontalListingCarousel extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final scheme = Theme.of(context).colorScheme;
+    // Calculate card width to fit ~2.5 cards on screen (showing partial 3rd)
+    final screenWidth = MediaQuery.of(context).size.width;
+    final cardWidth = (screenWidth - 48) / 2.5; // 48 = padding (12*2) + gaps
+    
     return SizedBox(
       height: kPopularCardHeight,
       child: ListView.separated(
@@ -23,29 +27,30 @@ class HorizontalListingCarousel extends StatelessWidget {
           return InkWell(
             onTap: () => onTap(e),
             child: SizedBox(
-              width: 150,
+              width: cardWidth,
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(14),
                   child: Container(
                     color: Theme.of(context).colorScheme.surfaceContainerHigh,
-                    height: 110,
+                    height: 140,
                     width: double.infinity,
                     child: e.logoUrl == null
-                        ? Icon(Icons.image, color: scheme.onSurfaceVariant)
-                        : Image.network(e.logoUrl!, fit: BoxFit.cover, errorBuilder: (_, __, ___) => Icon(Icons.image_not_supported, color: scheme.onSurfaceVariant)),
+                        ? Icon(Icons.image, size: 48, color: scheme.onSurfaceVariant)
+                        : Image.network(e.logoUrl!, fit: BoxFit.cover, errorBuilder: (_, __, ___) => Icon(Icons.image_not_supported, size: 48, color: scheme.onSurfaceVariant)),
                   ),
                 ),
-                const SizedBox(height: 8),
-                Text(e.name.isNotEmpty ? e.name : 'Listing', style: textTheme.bodyMedium, maxLines: 2, overflow: TextOverflow.ellipsis, softWrap: true),
-                Text(e.shortDescription ?? 'Unknown seller', style: textTheme.labelMedium, maxLines: 1, overflow: TextOverflow.ellipsis, softWrap: true),
-                const SizedBox(height: 4),
+                const SizedBox(height: 10),
+                Text(e.name.isNotEmpty ? e.name : 'Listing', style: textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w600), maxLines: 2, overflow: TextOverflow.ellipsis, softWrap: true),
+                const SizedBox(height: 2),
+                Text(e.shortDescription ?? 'Unknown seller', style: textTheme.bodySmall?.copyWith(color: scheme.onSurfaceVariant), maxLines: 1, overflow: TextOverflow.ellipsis, softWrap: true),
+                const SizedBox(height: 6),
                 // Keep chips on a single horizontal line to prevent vertical growth
                 SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(children: const [
                     _MiniChip(icon: Icons.place, label: 'Near me'),
-                    SizedBox(width: 6),
+                    SizedBox(width: 8),
                     _MiniChip(icon: Icons.timer, label: 'Ends soon'),
                   ]),
                 )
@@ -53,7 +58,7 @@ class HorizontalListingCarousel extends StatelessWidget {
             ),
           );
         },
-        separatorBuilder: (_, __) => const SizedBox(width: 12),
+        separatorBuilder: (_, __) => const SizedBox(width: 14),
         itemCount: items.length,
       ),
     );
@@ -67,9 +72,9 @@ class _MiniChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(color: scheme.surfaceContainerHighest, borderRadius: BorderRadius.circular(10)),
-      child: Row(mainAxisSize: MainAxisSize.min, children: [Icon(icon, size: 14, color: scheme.onSurfaceVariant), const SizedBox(width: 4), Text(label, style: TextStyle(fontSize: 12, color: scheme.onSurfaceVariant))]),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      decoration: BoxDecoration(color: scheme.surfaceContainerHighest, borderRadius: BorderRadius.circular(12)),
+      child: Row(mainAxisSize: MainAxisSize.min, children: [Icon(icon, size: 16, color: scheme.onSurfaceVariant), const SizedBox(width: 5), Text(label, style: TextStyle(fontSize: 13, color: scheme.onSurfaceVariant))]),
     );
   }
 }

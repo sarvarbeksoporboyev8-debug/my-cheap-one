@@ -34,16 +34,19 @@ class _CategoryStripState extends State<CategoryStrip> {
     final scheme = Theme.of(context).colorScheme;
     final textTheme = Theme.of(context).textTheme;
     return SizedBox(
-      height: 92,
+      height: 110,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.symmetric(horizontal: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 14),
         itemBuilder: (_, i) {
           final c = homeCategories[i];
           final isSel = c.slug == selected;
           final bg = isSel ? scheme.primaryContainer : scheme.surfaceContainerHigh;
           final iconColor = isSel ? scheme.primary : scheme.onSurfaceVariant;
-          final labelStyle = (isSel ? textTheme.labelLarge : textTheme.labelMedium)!.copyWith(fontWeight: isSel ? FontWeight.w600 : FontWeight.w500);
+          final labelStyle = textTheme.bodyMedium!.copyWith(
+            fontWeight: isSel ? FontWeight.w600 : FontWeight.w500,
+            color: isSel ? scheme.primary : scheme.onSurface,
+          );
           return InkWell(
             onTap: () {
               setState(() => selected = c.slug);
@@ -52,17 +55,17 @@ class _CategoryStripState extends State<CategoryStrip> {
             borderRadius: BorderRadius.circular(48),
             child: Column(children: [
               Container(
-                width: 56,
-                height: 56,
+                width: 68,
+                height: 68,
                 decoration: BoxDecoration(color: bg, shape: BoxShape.circle),
-                child: Icon(c.icon, color: iconColor),
+                child: Icon(c.icon, color: iconColor, size: 30),
               ),
-              const SizedBox(height: 6),
-              SizedBox(width: 68, child: Text(c.title, textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis, style: labelStyle)),
+              const SizedBox(height: 8),
+              SizedBox(width: 80, child: Text(c.title, textAlign: TextAlign.center, maxLines: 1, overflow: TextOverflow.ellipsis, style: labelStyle)),
             ]),
           );
         },
-        separatorBuilder: (_, __) => const SizedBox(width: 12),
+        separatorBuilder: (_, __) => const SizedBox(width: 14),
         itemCount: homeCategories.length,
       ),
     );
